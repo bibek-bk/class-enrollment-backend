@@ -32,14 +32,28 @@ CREATE TABLE IF NOT EXISTS students (
     FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE SET NULL
 );
 
+-- -- Create Enrollments Table
+-- CREATE TABLE IF NOT EXISTS enrollments (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     visitor_id INT NOT NULL,
+--     course_id INT NOT NULL,
+--     enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     status ENUM('pending', 'enrolled', 'completed', 'cancelled') DEFAULT 'pending',
+--     payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending',
+--     FOREIGN KEY (visitor_id) REFERENCES visitors(id) ON DELETE CASCADE,
+--     FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+-- );
+
 -- Create Enrollments Table
 CREATE TABLE IF NOT EXISTS enrollments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT NOT NULL,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    visitor_id INT NOT NULL,
     course_id INT NOT NULL,
     enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'enrolled', 'completed', 'cancelled') DEFAULT 'pending',
     payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending',
-    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
-    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
-);
+    FOREIGN KEY (visitor_id) REFERENCES visitors(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    INDEX idx_visitor_id (visitor_id),
+    INDEX idx_course_id (course_id)
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
