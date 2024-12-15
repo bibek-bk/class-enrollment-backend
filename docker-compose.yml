@@ -1,0 +1,25 @@
+# version: "3.8"
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=mysqldb
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=class_enrollment
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: class_enrollment
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+volumes:
+  db_data:
+

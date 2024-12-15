@@ -1,0 +1,17 @@
+backend/
+  |- src/
+      |- config/
+      |- controllers/
+      |- models/
+      |- routes/
+      |- utils/
+      |- app.js
+      |- server.js
+  |- database/
+      |- init.sql
+  |- Dockerfile
+  |- .dockerignore
+  |- docker-compose.yml
+  |- package.json
+  |- .env
+
