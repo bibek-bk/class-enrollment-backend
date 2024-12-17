@@ -23,5 +23,5 @@ router.put('/:id/visa/status', updateVisaStatus);
 router.post('/:id/visa/consultant', assignConsultant);
 
 
-module.exports = router;
+module.exports = router;    
 

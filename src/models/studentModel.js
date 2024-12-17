@@ -52,7 +52,7 @@ const Student = sequelize.define('Student', {
   visa_status: {
     type: DataTypes.STRING,
     defaultValue: 'not_started', // Default value
-    allowNull: false
+    allowNull: true
   },
   consultant: {
     type: DataTypes.STRING,
@@ -61,7 +61,7 @@ const Student = sequelize.define('Student', {
 }, {
   timestamps: true,
   createdAt: 'created_at',
-  updatedAt: false,
+  updatedAt: 'updated_at',
   tableName: 'students' // Explicit table name for clarity
 });
 
