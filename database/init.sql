@@ -27,22 +27,14 @@ CREATE TABLE IF NOT EXISTS students (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     phone VARCHAR(15),
-    course_id INT,
+    course VARCHAR(255),
+    scorecard JSON,
+    visa_status VARCHAR(255) NOT NULL DEFAULT 'not_started',
+    consultant VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE SET NULL
+    updated_at TIMESTAMP NULL DEFAULT NULL
 );
 
--- -- Create Enrollments Table
--- CREATE TABLE IF NOT EXISTS enrollments (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     visitor_id INT NOT NULL,
---     course_id INT NOT NULL,
---     enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---     status ENUM('pending', 'enrolled', 'completed', 'cancelled') DEFAULT 'pending',
---     payment_status ENUM('pending', 'paid', 'failed') DEFAULT 'pending',
---     FOREIGN KEY (visitor_id) REFERENCES visitors(id) ON DELETE CASCADE,
---     FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
--- );
 
 -- Create Enrollments Table
 CREATE TABLE IF NOT EXISTS enrollments (
